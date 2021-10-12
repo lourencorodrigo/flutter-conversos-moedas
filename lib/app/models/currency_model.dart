@@ -22,7 +22,7 @@ class CurrencyModel {
       CurrencyModel(
           name: 'Real', real: 6.62, dolar: 1.17, euro: 1.0, bitcoin: 0.00010),
       CurrencyModel(
-          name: 'Real',
+          name: 'Bitcoin',
           real: 64116.51,
           dolar: 11351.30,
           euro: 9689.54,

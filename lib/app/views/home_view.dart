@@ -1,9 +1,23 @@
 import 'package:conversor_moeda/app/components/currency_box.dart';
-import 'package:conversor_moeda/app/models/currency_model.dart';
+import 'package:conversor_moeda/app/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+class HomeView extends StatefulWidget {
+  @override
+  _HomeViewState createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  late HomeController homeController;
+  final TextEditingController toText = TextEditingController();
+
+  final TextEditingController fromText = TextEditingController();
+
+  @override
+  void initState() {
+    homeController = HomeController(toText: toText, fromText: fromText);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +34,33 @@ class HomeView extends StatelessWidget {
                 width: 100,
               ),
               SizedBox(height: 30),
-              CurrecyBox(),
+              CurrecyBox(
+                selectedItem: homeController.toCurrency,
+                controller: toText,
+                items: homeController.currencies,
+                onChanged: (model) {
+                  setState(() {
+                    homeController.toCurrency = model!;
+                  });
+                },
+              ),
               SizedBox(height: 10),
-              CurrecyBox(),
+              CurrecyBox(
+                selectedItem: homeController.fromCurrency,
+                controller: fromText,
+                items: homeController.currencies,
+                onChanged: (model) {
+                  setState(() {
+                    homeController.fromCurrency = model!;
+                  });
+                },
+              ),
               SizedBox(height: 50),
-              ElevatedButton(onPressed: () {}, child: Text('CONVERTER')),
+              ElevatedButton(
+                  onPressed: () {
+                    homeController.convert();
+                  },
+                  child: Text('CONVERTER')),
             ],
           ),
         ),
