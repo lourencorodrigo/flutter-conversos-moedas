@@ -25,43 +25,45 @@ class _HomeViewState extends State<HomeView> {
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 100, right: 30, left: 30),
-          child: Column(
-            children: [
-              Image.asset(
-                'assets/images/logo.png',
-                width: 100,
-              ),
-              SizedBox(height: 30),
-              CurrecyBox(
-                selectedItem: homeController.toCurrency,
-                controller: toText,
-                items: homeController.currencies,
-                onChanged: (model) {
-                  setState(() {
-                    homeController.toCurrency = model!;
-                  });
-                },
-              ),
-              SizedBox(height: 10),
-              CurrecyBox(
-                selectedItem: homeController.fromCurrency,
-                controller: fromText,
-                items: homeController.currencies,
-                onChanged: (model) {
-                  setState(() {
-                    homeController.fromCurrency = model!;
-                  });
-                },
-              ),
-              SizedBox(height: 50),
-              ElevatedButton(
-                  onPressed: () {
-                    homeController.convert();
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 100, right: 30, left: 30),
+            child: Column(
+              children: [
+                Image.asset(
+                  'assets/images/logo.png',
+                  width: 100,
+                ),
+                SizedBox(height: 30),
+                CurrecyBox(
+                  selectedItem: homeController.toCurrency,
+                  controller: toText,
+                  items: homeController.currencies,
+                  onChanged: (model) {
+                    setState(() {
+                      homeController.toCurrency = model!;
+                    });
                   },
-                  child: Text('CONVERTER')),
-            ],
+                ),
+                SizedBox(height: 10),
+                CurrecyBox(
+                  selectedItem: homeController.fromCurrency,
+                  controller: fromText,
+                  items: homeController.currencies,
+                  onChanged: (model) {
+                    setState(() {
+                      homeController.fromCurrency = model!;
+                    });
+                  },
+                ),
+                SizedBox(height: 50),
+                ElevatedButton(
+                    onPressed: () {
+                      homeController.convert();
+                    },
+                    child: Text('CONVERTER')),
+              ],
+            ),
           ),
         ),
       ),

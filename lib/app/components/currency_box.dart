@@ -45,6 +45,7 @@ class CurrecyBox extends StatelessWidget {
             flex: 2,
             child: TextField(
               controller: controller,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
               ),
