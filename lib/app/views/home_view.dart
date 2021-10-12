@@ -10,34 +10,63 @@ class HomeView extends StatelessWidget {
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: Column(
-          children: [
-            Image.asset('assets/images/logo.png'),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: SizedBox(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 100, right: 20, left: 20),
+          child: Column(
+            children: [
+              Image.asset(
+                'assets/images/logo.png',
+                width: 100,
+              ),
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: DropdownButton<CurrencyModel>(
-                        items: [],
-                        onChanged: (value) {},
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: SizedBox(
+                          height: 64,
+                          child: DropdownButton(
+                            isExpanded: true,
+                            underline:
+                                Container(height: 1, color: Colors.amber),
+                            items: [
+                              DropdownMenuItem(
+                                child: Text('Real'),
+                                value: 1,
+                              ),
+                              DropdownMenuItem(
+                                child: Text('Dólar'),
+                                value: 2,
+                              ),
+                            ],
+                            onChanged: (value) {},
+                          ),
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: TextField(
-                        onChanged: (text) {},
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(labelText: 'Email'),
+                      SizedBox(width: 10),
+                      Expanded(
+                        flex: 2,
+                        child: TextField(
+                          onChanged: (text) {},
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.amber),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            ElevatedButton(onPressed: () {}, child: Text('CONVERTER')),
-          ],
+              SizedBox(height: 50),
+              ElevatedButton(onPressed: () {}, child: Text('CONVERTER')),
+            ],
+          ),
         ),
       ),
     );
